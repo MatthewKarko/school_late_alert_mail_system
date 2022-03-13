@@ -1,0 +1,218 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+ScreenManagement:
+    transition: FadeTransition()
+    
+    LoginScreen:
+        name: "login"
+    ServicesScreen:
+        name: "services"
+    AboutScreen:
+        name:"about"
+
+<LoginScreen>:
+    room_input: roomno
+    name_input: fullname
+    fullname: fullname
+    loginstatus: loginstatus
+    FloatLayout:
+
+        TextInput:
+            multiline: False
+            font_size: 12
+            id: roomno
+            pos_hint: {'x':0.05, 'y' : 0.13}
+            size_hint: 0.2, 0.05
+            hint_text: "Username or Email"
+            write_tab: False
+            on_text_validate: fullname.focus = True
+
+
+        TextInput:
+            multiline: False
+            font_size: 12
+            id: fullname
+            pos_hint: {'x':0.05, 'y' : 0.05}
+            size_hint: 0.2, 0.05
+            hint_text: "Password"
+            write_tab: False
+
+        Button:
+            id: login
+            text: "Enter"
+            pos_hint: {"x": 0.28, "y": 0.05}
+            size_hint: 0.08, 0.05
+            focus: False
+            on_press: root.loginscript()
+            color: 0,0,0,1
+            background_color: 128, 128, 0, 1
+
+        Button:
+            text: ""
+            pos_hint: {"x": 0.17, "y": 0.36}
+            size_hint: 0.6,0.5
+            background_normal: "logo1.JPG"
+            background_down: "1,1,1,1"
+
+        Button:
+            text: ""
+            pos_hint: {"x": 0.8, "y": 0.05}
+            size_hint: 0.15,0.15
+            background_normal: "abo.jpg"
+            background_down: "1,1,1,1"
+            # color: 0,0,0,1
+            # background_color: 128, 0, 0, 1
+            on_press: app.root.current ="about"
+
+
+
+
+        Label:
+            id: loginstatus
+            size_hint: 0.2, 0.05
+            pos_hint: {"x": 0.32, "y": 0.13}
+            color: 1, 0, 0, 1
+
+
+<ServicesScreen>:
+    names_text_input: names
+    namelist:namelist
+    emlist:emlist
+    emlist1:emlist1
+    FloatLayout:
+        # Label:
+        #     text: "Placeholder"
+        #     size_hint: 0.2, 0.05
+        #     pos_hint: {"x": 0.4, "y": 0.13}
+        #     color: 1, 1, 1, 1
+
+        Button:
+            id: servicesback
+            text: "Back"
+            pos_hint: {'x':0 , 'y':0.95}
+            size_hint: 0.08, 0.05
+            on_press:
+                app.root.current="login"
+            color: 0,0,0,1
+            background_color: 128, 0, 0, 1
+
+        # Button:
+        #     id:test
+        #     text:"Insert file"
+        #     pos_hint: {'x':0.1, 'y':0.3}
+        #     size_hint: 0.08, 0.05
+        #     on_press:
+        #         root.OpenFile()
+        #     color: 0,0,0,1
+        #     background_color: 0, 124, 0, 1
+
+
+        Label:
+            id:namelist
+            size_hint: 0.2, 0.05
+            pos_hint: {"x": 0.35, "y": 0.6}
+            color: 0, 0, 0, 1
+
+        Label:
+            id:emlist
+            size_hint: 0.2, 0.05
+            pos_hint: {"x": 0.35, "y": 0.2}
+            color: 1, 0, 0, 1
+
+        Label:
+            id:emlist1
+            size_hint: 0.2, 0.05
+            pos_hint: {"x": 0.35, "y": 0.2}
+            color: 0, 1, 0, 1
+
+        # Button:
+        #     id:butt
+        #     text:"Read file"
+        #     pos_hint: {'x':0.2, 'y':0.4}
+        #     size_hint: 0.08, 0.05
+        #     on_press:
+        #         root.ReadFile()
+        #     color: 0,0,0,1
+        #     background_color: 0, 124, 0, 1
+
+
+
+        TextInput:
+            multiline: False
+            font_size: 12
+            id: names
+            pos_hint: {'x':0.08, 'y' : 0.7}
+            size_hint: 0.2, 0.05
+            hint_text: "Fullnames of Students"
+            write_tab: False
+            on_text_validate: names.focus = True
+
+        # Button:
+        #     text: "Save Names"
+        #     pos_hint: {'x':0.25, 'y' : 0.6}
+        #     size_hint: 0.15, 0.05
+        #     on_release: root.printnames()
+
+
+        Button:
+            text: "Check Names"
+            pos_hint: {'x':0.8, 'y' : 0.7}
+            size_hint: 0.15, 0.05
+            on_release:
+                root.searchdatabase()
+                root.checknames()
+            background_color: 0,0,128,1
+            color: 1,1,1,1
+
+        Button:
+            text: "Delete last Entered Name"
+            pos_hint: {'x':0.75, 'y' : 0.6}
+            size_hint: 0.25, 0.05
+            on_release:
+                root.deletename()
+                root.printnames()
+            background_color: 128,128,128,1
+            color: 0,0,0,1
+
+        Button:
+            text: "Send Emails"
+            pos_hint: {'x':0.4, 'y' : 0.05}
+            size_hint: 0.15, 0.05
+            background_color: 128,128,0,1
+            color: 0,0,0,1
+            on_release: root.show_it()
+        
+
+        Button:
+            text: ""
+            pos_hint: {"x": 0.35, "y": 0.8}
+            size_hint: 0.3,0.15
+            background_normal: "emailpage.jpg"
+            background_down: "1,1,1,1"
+            # color: 0,0,0,1
+            # background_color: 128, 0, 0, 1
+
+
+
+
+
+<AboutScreen>:
+
+    FloatLayout:
+        Button:
+            id: loginback
+            text: "Back"
+            pos_hint: {'x':0 , 'y':0.95}
+            size_hint: 0.08, 0.05
+            on_press:
+                # root.clearError()
+                app.root.current="login"
+            color: 0,0,0,1
+            background_color: 128, 0, 0, 1
+
+        Button:
+            text: ""
+            pos_hint: {"x": 0.05, "y": 0.1}
+            size_hint: 0.9,0.8
+            background_normal: "aboutus.JPG"
+            background_down: "1,1,1,1"       
